@@ -13,9 +13,8 @@ const bodyFont = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "santos-dev-solutions | Desenvolvimento React e Next",
-  description:
-    "Site institucional da santos-dev-solutions, com foco em desenvolvimento React, Next.js, Liferay e React Native.",
+  title: "santos-dev-solutions",
+  description: "Multilingual website for santos-dev-solutions.",
 };
 
 export default function RootLayout({
@@ -24,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="en">
       <body className={`${headingFont.variable} ${bodyFont.variable}`}>
         {children}
       </body>

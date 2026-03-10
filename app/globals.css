@@ -1,7 +1,7 @@
 ﻿:root {
   --bg: #f4efe6;
   --bg-soft: #fffaf2;
-  --panel: rgba(255, 251, 245, 0.88);
+  --panel: rgba(255, 251, 245, 0.94);
   --panel-strong: #0f2740;
   --line: rgba(15, 39, 64, 0.1);
   --line-strong: rgba(15, 39, 64, 0.18);
@@ -12,8 +12,9 @@
   --accent-soft: rgba(16, 42, 67, 0.08);
   --gold: #bb7a2d;
   --gold-soft: rgba(187, 122, 45, 0.12);
-  --card-tint: rgba(15, 39, 64, 0.03);
+  --card-tint: rgba(15, 39, 64, 0.05);
   --shadow: 0 24px 70px rgba(20, 32, 51, 0.08);
+  --shadow-hover: 0 26px 60px rgba(16, 42, 67, 0.16);
 }
 
 * {
@@ -55,7 +56,7 @@ a {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.85fr);
   gap: 28px;
-  align-items: stretch;
+  align-items: start;
   padding: 48px 0 32px;
 }
 
@@ -72,6 +73,28 @@ a {
   box-shadow: var(--shadow);
 }
 
+.hero-card,
+.info-card,
+.timeline-item,
+.projects-panel,
+.project-note {
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease,
+    background 220ms ease;
+}
+
+.hero-card:hover,
+.info-card:hover,
+.timeline-item:hover,
+.projects-panel:hover,
+.project-note:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(187, 122, 45, 0.22);
+}
+
 .hero-copy {
   position: relative;
   overflow: hidden;
@@ -79,7 +102,7 @@ a {
   padding: 40px;
   background:
     radial-gradient(circle at top right, rgba(187, 122, 45, 0.08), transparent 30%),
-    linear-gradient(180deg, rgba(255, 251, 245, 0.95), rgba(255, 248, 239, 0.92));
+    linear-gradient(180deg, rgba(255, 251, 245, 0.97), rgba(255, 248, 239, 0.95));
 }
 
 .hero-copy::after {
@@ -94,16 +117,25 @@ a {
 }
 
 .hero-card {
+  align-self: start;
   border-radius: 28px;
-  padding: 28px;
+  padding: 24px;
   color: #f7f4ee;
   background:
     radial-gradient(circle at top right, rgba(255, 255, 255, 0.09), transparent 30%),
     linear-gradient(180deg, #102a43 0%, #0b1e31 100%);
 }
 
+.topbar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
 .eyebrow {
-  margin: 0 0 12px;
+  margin: 0;
   color: var(--gold);
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -111,16 +143,47 @@ a {
   font-weight: 700;
 }
 
-.hero-kicker {
+.locale-switcher {
   display: inline-flex;
-  margin-bottom: 18px;
-  padding: 10px 14px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.locale-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 12px;
   border-radius: 999px;
-  border: 1px solid rgba(187, 122, 45, 0.18);
-  background: rgba(187, 122, 45, 0.08);
+  border: 1px solid rgba(16, 42, 67, 0.12);
+  background: rgba(255, 255, 255, 0.68);
   color: var(--accent);
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.locale-toggle:hover {
+  transform: translateY(-2px);
+  border-color: rgba(187, 122, 45, 0.28);
+  background: rgba(255, 249, 240, 0.96);
+  color: var(--gold);
+}
+
+.locale-toggle.is-active {
+  border-color: rgba(16, 42, 67, 0.2);
+  background: linear-gradient(135deg, #102a43 0%, #173b5f 100%);
+  color: #fdf8f1;
+  box-shadow: 0 12px 24px rgba(16, 42, 67, 0.16);
 }
 
 h1,
@@ -156,7 +219,9 @@ h3 {
 .info-card p,
 .timeline-item p,
 .project-copy p,
-.project-note p {
+.project-note p,
+.footer-tagline,
+.footer-legal span {
   color: var(--muted);
   line-height: 1.7;
   font-size: 1.02rem;
@@ -168,8 +233,8 @@ h3 {
 }
 
 .hero-card .metric-grid article {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .hero-text {
@@ -224,7 +289,7 @@ h3 {
 
 .button-secondary {
   border: 1px solid rgba(16, 42, 67, 0.14);
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.78);
   color: var(--accent-strong);
 }
 
@@ -248,7 +313,7 @@ h3 {
   padding: 0 16px;
   border-radius: 999px;
   border: 1px solid rgba(16, 42, 67, 0.12);
-  background: rgba(255, 255, 255, 0.62);
+  background: rgba(255, 255, 255, 0.7);
   color: var(--accent);
   font-weight: 600;
   transition:
@@ -277,17 +342,18 @@ h3 {
 .highlight-list li {
   padding: 14px 16px;
   border-radius: 18px;
-  background: var(--card-tint);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(247, 241, 232, 0.92));
   border: 1px solid var(--line);
   color: var(--text);
 }
 
 .card-label,
 .project-note span,
-.timeline-period {
+.timeline-period,
+.footer-heading {
   display: inline-flex;
   width: fit-content;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   padding: 7px 12px;
   border-radius: 999px;
   background: var(--gold-soft);
@@ -300,27 +366,27 @@ h3 {
 
 .metric-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: 1fr;
+  gap: 12px;
 }
 
 .metric-grid article {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 18px;
-  border-radius: 22px;
+  padding: 16px;
+  border-radius: 20px;
   background: var(--card-tint);
   border: 1px solid var(--line);
 }
 
 .metric-grid strong {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
 }
 
 .metric-grid span {
   color: var(--muted);
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .section {
@@ -342,6 +408,9 @@ h3 {
 .timeline-item {
   border-radius: 26px;
   padding: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(16, 42, 67, 0.05), transparent 28%),
+    linear-gradient(180deg, rgba(255, 253, 249, 0.98), rgba(248, 242, 233, 0.94));
 }
 
 .stack-cloud {
@@ -354,7 +423,7 @@ h3 {
   padding: 14px 18px;
   border-radius: 999px;
   border: 1px solid rgba(16, 42, 67, 0.14);
-  background: rgba(255, 255, 255, 0.62);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(247, 241, 232, 0.94));
   color: var(--accent);
   font-weight: 700;
 }
@@ -365,6 +434,9 @@ h3 {
   gap: 18px;
   border-radius: 34px;
   padding: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(16, 42, 67, 0.04), transparent 34%),
+    linear-gradient(180deg, rgba(255, 252, 247, 0.98), rgba(247, 241, 232, 0.96));
 }
 
 .project-copy {
@@ -375,8 +447,8 @@ h3 {
   border-radius: 26px;
   padding: 24px;
   background:
-    radial-gradient(circle at top right, rgba(187, 122, 45, 0.12), transparent 40%),
-    linear-gradient(180deg, rgba(255, 252, 247, 0.96), rgba(247, 241, 232, 0.96));
+    radial-gradient(circle at top right, rgba(187, 122, 45, 0.14), transparent 40%),
+    linear-gradient(180deg, rgba(255, 252, 247, 0.98), rgba(247, 241, 232, 0.98));
 }
 
 .project-note strong {
@@ -387,40 +459,55 @@ h3 {
 }
 
 .site-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(220px, 0.9fr) minmax(240px, 1fr);
+  gap: 22px;
+  margin-top: 42px;
+  padding: 28px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(187, 122, 45, 0.1), transparent 32%),
+    linear-gradient(180deg, rgba(255, 251, 245, 0.96), rgba(248, 242, 233, 0.96));
+}
+
+.footer-brand,
+.footer-column,
+.footer-legal {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  margin-top: 34px;
-  padding: 20px 24px;
-  border-radius: 24px;
+  flex-direction: column;
 }
 
-.site-footer p,
-.site-footer span {
-  margin: 0;
-}
-
-.site-footer p {
+.footer-title {
+  margin: 0 0 12px;
   font-family: var(--font-heading), sans-serif;
+  font-size: 1.35rem;
   font-weight: 700;
 }
 
-.site-footer span {
-  color: var(--muted);
+.footer-tagline {
+  max-width: 28rem;
+}
+
+.footer-legal {
+  gap: 8px;
 }
 
 @media (max-width: 960px) {
   .hero,
   .about-grid,
   .timeline,
-  .section-accent .projects-panel {
+  .section-accent .projects-panel,
+  .site-footer {
     grid-template-columns: 1fr;
   }
 
-  .site-footer {
+  .topbar-row {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .locale-switcher {
+    justify-content: flex-start;
   }
 
   h1 {
@@ -448,17 +535,14 @@ h3 {
     padding: 22px;
   }
 
-  .metric-grid {
-    grid-template-columns: 1fr;
-  }
-
   .button,
   .contact-link,
-  .footer-links a {
+  .footer-links a,
+  .locale-toggle {
     width: 100%;
   }
 
-  .site-footer {
+  .locale-switcher {
     width: 100%;
   }
 }
